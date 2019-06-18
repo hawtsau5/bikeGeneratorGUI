@@ -20,7 +20,6 @@ def liveWindow(x,y):
     placeLiveWidgets()    
 
 def update_widgets():
-    a.rpmData_label["text"] = live_data.get_rpm()
     print(live_data.get_rpm())
 
 def createLiveWidgets(x,y):
