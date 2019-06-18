@@ -37,5 +37,5 @@ class LiveData:
 
     def get_rpm(self):
         self.calculate_speed(20) # call this function with wheel radius as parameter
-        print('rpm:{0:.0f}-RPM kmh:{1:.0f}-KMH dist_meas:{2:.2f}m pulse:{3}'.format(self.rpm, self.km_per_hour, self.dist_meas, self.pulse))
+        # print('rpm:{0:.0f}-RPM kmh:{1:.0f}-KMH dist_meas:{2:.2f}m pulse:{3}'.format(self.rpm, self.km_per_hour, self.dist_meas, self.pulse))
         return self.rpm
