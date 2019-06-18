@@ -132,5 +132,6 @@ ageEntry.grid(row=2, column=2)
 enterButton = tk.Button(a, text = "ENTER", command=click, height = 5, width = 30) #create button
 enterButton.grid(row=3, column=2)
 
+update_widgets()
 a.after(500, update_widgets)
 a.mainloop() 
