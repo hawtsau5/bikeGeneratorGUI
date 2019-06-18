@@ -10,8 +10,6 @@ GPIO.setup(21, GPIO.IN)
 GPIO.add_event_detect(  live_data.sensor, GPIO.FALLING,
                         callback=live_data.update_elapsed_time, bouncetime=20)
 
-rpmData = tk.StringVar(value="0")
-
 def click():
     name = nameEntry.get()
     age = ageEntry.get()
@@ -52,7 +50,7 @@ def createLiveWidgets(x,y):
     a.distance_label              = tk.Label(a.second_frame, text="distance :", font=frameFont, bg=frameBG, fg=frameTC)
     a.elapsed_time          = tk.Label(a.second_frame, text="time elapsed :", font=frameFont, bg=frameBG, fg=frameTC)
 
-    a.rpmData_label              = tk.Label(a.second_frame, text=rpmData, font=frameFont, bg=frameBG, fg=frameTC)
+    a.rpmData_label              = tk.Label(a.second_frame, text="  ", font=frameFont, bg=frameBG, fg=frameTC)
     a.speedData_label            = tk.Label(a.second_frame, text="  ", font=frameFont, bg=frameBG, fg=frameTC)
     a.distanceData_label              = tk.Label(a.second_frame, text=" ", font=frameFont, bg=frameBG, fg=frameTC)
     a.elapsedData_time          = tk.Label(a.second_frame, text="   ", font=frameFont, bg=frameBG, fg=frameTC)
@@ -146,7 +144,6 @@ enterButton.grid(row=3, column=2)
 def update_widgets():
     print(live_data.get_rpm())
     a.after(30, update_widgets)
-    rpmData.set(str(live_data.get_rpm()))
 
 update_widgets()
 a.after(30, update_widgets)
