@@ -19,7 +19,8 @@ def liveWindow(x,y):
     createLiveWidgets(x,y)
     placeLiveWidgets()
 
-    live_data.get_rpm()
+    while True:
+        live_data.get_rpm()
 
 def createLiveWidgets(x,y):
     a.first_frame = tk.LabelFrame(a, text='Power Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frameTC)
