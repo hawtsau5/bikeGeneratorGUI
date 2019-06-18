@@ -1,10 +1,8 @@
-from tkinter import *
-from tkinter import ttk
 import tkinter as tk
 import mainGPIO
 
 
-
+live_data = mainGPIO.LiveData()
 
 def click():
     name = nameEntry.get()
@@ -20,7 +18,8 @@ def liveWindow(x,y):
 
     createLiveWidgets(x,y)
     placeLiveWidgets()
-    startRPM()
+
+    live_data.get_rpm()
 
 def createLiveWidgets(x,y):
     a.first_frame = tk.LabelFrame(a, text='Power Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frameTC)
@@ -105,34 +104,31 @@ def placeLiveWidgets():
     a.heartUnit_label.grid(row=3, column=3)
     
 
-
- 
-
 border=5
 frameBG='#000033'
 frameTC='#FFFFFF'
 frameFont='Helvetica 42'
 
 
-a = Tk()                                 #create window
+a = tk.Tk()                                 #create window
 a.minsize(1490, 320)                      #size window 
 a.title("Current Statistics")            #title window
 a.configure(background=frameBG)        #background color   
 
-enterName = Label(a, text="Name", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
+enterName = tk.Label(a, text="Name", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
 enterName.grid(row=1, column=1)
 
-nameEntry = Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
+nameEntry = tk.Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
 nameEntry.grid(row=1, column=2)
 
 
-enterAge = Label(a, text="Age", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
+enterAge = tk.Label(a, text="Age", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
 enterAge.grid(row=2,column=1)
 
-ageEntry = Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
+ageEntry = tk.Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
 ageEntry.grid(row=2, column=2)
 
-enterButton = Button(a, text = "ENTER", command=click, height = 5, width = 30) #create button
+enterButton = tk.Button(a, text = "ENTER", command=click, height = 5, width = 30) #create button
 enterButton.grid(row=3, column=2)
 
 
