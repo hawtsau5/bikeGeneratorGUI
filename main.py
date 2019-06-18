@@ -21,6 +21,7 @@ def liveWindow(x,y):
 
 def update_widgets():
     print(live_data.get_rpm())
+    a.after(30, update_widgets)
 
 def createLiveWidgets(x,y):
     a.first_frame = tk.LabelFrame(a, text='Power Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frameTC)
@@ -133,5 +134,5 @@ enterButton = tk.Button(a, text = "ENTER", command=click, height = 5, width = 30
 enterButton.grid(row=3, column=2)
 
 update_widgets()
-a.after(500, update_widgets)
+a.after(30, update_widgets)
 a.mainloop() 
