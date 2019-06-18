@@ -5,10 +5,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(21, GPIO.IN)
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(sensor,GPIO.IN,GPIO.PUD_UP)
-
 def calculate_elapse(channel):              # callback function
     global pulse, start_timer, elapse
     pulse+=1                                # increase pulse by 1 whenever interrupt occurred
