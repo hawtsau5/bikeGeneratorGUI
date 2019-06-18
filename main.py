@@ -1,6 +1,8 @@
 import tkinter as tk
 import mainGPIO
+import random
 import RPi.GPIO as GPIO
+
 
 live_data = mainGPIO.LiveData()
 
@@ -23,7 +25,10 @@ def liveWindow(x,y):
     ageEntry.destroy()
 
     createLiveWidgets(x,y)
-    placeLiveWidgets()    
+    placeLiveWidgets()
+
+    update_widgets()
+    a.after(30, update_widgets)
 
 def createLiveWidgets(x,y):
     
@@ -141,10 +146,13 @@ ageEntry.grid(row=2, column=2)
 enterButton = tk.Button(a, text = "ENTER", command=click, height = 5, width = 30) #create button
 enterButton.grid(row=3, column=2)
 
-def update_widgets():
-    print(live_data.get_rpm())
-    a.after(30, update_widgets)
+a.rpmdata = tk.StringVar(a, value="20")
 
-update_widgets()
-a.after(30, update_widgets)
+def update_widgets():
+    print("RPM VALUE : {}kmh".format(live_data.get_rpm()))
+    a.speedData_label["text"] = str(random.randint(0, 1000))
+    a.rpmData_label["text"] = str(live_data.get_rpm())
+    a.after(30, update_widgets)
+    a.update()
+
 a.mainloop() 
