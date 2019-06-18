@@ -25,11 +25,6 @@ def liveWindow(x,y):
     createLiveWidgets(x,y)
     placeLiveWidgets()    
 
-def update_widgets():
-    print(live_data.get_rpm())
-    a.after(30, update_widgets)
-    a.rpmData.set(str(live_data.get_rpm()))
-
 def createLiveWidgets(x,y):
     a.rpmData = tk.StringVar(value="0")
 
@@ -145,6 +140,11 @@ ageEntry.grid(row=2, column=2)
 
 enterButton = tk.Button(a, text = "ENTER", command=click, height = 5, width = 30) #create button
 enterButton.grid(row=3, column=2)
+
+def update_widgets():
+    print(live_data.get_rpm())
+    a.after(30, update_widgets)
+    a.rpmData.set(str(live_data.get_rpm()))
 
 update_widgets()
 a.after(30, update_widgets)
