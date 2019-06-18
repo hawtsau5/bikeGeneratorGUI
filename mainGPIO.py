@@ -1,10 +1,5 @@
 import time
 import math
-import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(21, GPIO.IN)
-
 
 class LiveData:
     def __init__(self):                
@@ -16,8 +11,7 @@ class LiveData:
         self.pulse = 0
         self.start_timer = time.time()
 
-        GPIO.add_event_detect(  self.sensor, GPIO.FALLING,
-                                callback=self.update_elapsed_time, bouncetime=20)
+        
 
     def update_elapsed_time(self):
         self.pulse+=1                                # increase pulse by 1 whenever interrupt occurred

@@ -1,8 +1,14 @@
 import tkinter as tk
 import mainGPIO
-
+import RPi.GPIO as GPIO
 
 live_data = mainGPIO.LiveData()
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(21, GPIO.IN)
+GPIO.add_event_detect(  live_data.sensor, GPIO.FALLING,
+                        callback=live_data.update_elapsed_time, bouncetime=20)
 
 def click():
     name = nameEntry.get()
@@ -22,17 +28,22 @@ def liveWindow(x,y):
 def update_widgets():
     print(live_data.get_rpm())
     a.after(30, update_widgets)
+    a.rpmData.set(str(live_data.get_rpm()))
 
 def createLiveWidgets(x,y):
+    a.rpmData = tk.StringVar(value="0")
+
     a.first_frame = tk.LabelFrame(a, text='Power Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frameTC)
     a.power_label        = tk.Label(a.first_frame, text="power :", font=frameFont, bg=frameBG, fg=frameTC) #create power labels
     a.voltage_label      = tk.Label(a.first_frame, text="voltage :", font=frameFont, bg=frameBG, fg=frameTC)
     a.current_label     = tk.Label(a.first_frame, text="current :", font=frameFont, bg=frameBG, fg=frameTC)
     a.battery_label     = tk.Label(a.first_frame, text="battery :", font=frameFont, bg=frameBG, fg=frameTC)
+
     a.powerData_label        = tk.Label(a.first_frame, text="   ", font=frameFont, bg=frameBG, fg=frameTC) #create rpm labels
     a.voltageData_label      = tk.Label(a.first_frame, text="   ", font=frameFont, bg=frameBG, fg=frameTC)
     a.currentData_label     = tk.Label(a.first_frame, text="    ", font=frameFont, bg=frameBG, fg=frameTC)
     a.batteryData_label     = tk.Label(a.first_frame, text="    ", font=frameFont, bg=frameBG, fg=frameTC)
+
     a.powerUnit_label        = tk.Label(a.first_frame, text="W", font=frameFont, bg=frameBG, fg=frameTC) #create rpm labels
     a.voltageUnit_label      = tk.Label(a.first_frame, text="V", font=frameFont, bg=frameBG, fg=frameTC)
     a.currentUnit_label     = tk.Label(a.first_frame, text="A", font=frameFont, bg=frameBG, fg=frameTC)
@@ -43,10 +54,12 @@ def createLiveWidgets(x,y):
     a.speed_label            = tk.Label(a.second_frame, text="speed :", font=frameFont, bg=frameBG, fg=frameTC)
     a.distance_label              = tk.Label(a.second_frame, text="distance :", font=frameFont, bg=frameBG, fg=frameTC)
     a.elapsed_time          = tk.Label(a.second_frame, text="time elapsed :", font=frameFont, bg=frameBG, fg=frameTC)
-    a.rpmData_label              = tk.Label(a.second_frame, text="   ", font=frameFont, bg=frameBG, fg=frameTC)
+
+    a.rpmData_label              = tk.Label(a.second_frame, text=a.rpmData, font=frameFont, bg=frameBG, fg=frameTC)
     a.speedData_label            = tk.Label(a.second_frame, text="  ", font=frameFont, bg=frameBG, fg=frameTC)
     a.distanceData_label              = tk.Label(a.second_frame, text=" ", font=frameFont, bg=frameBG, fg=frameTC)
     a.elapsedData_time          = tk.Label(a.second_frame, text="   ", font=frameFont, bg=frameBG, fg=frameTC)
+
     a.rpmUnit_label              = tk.Label(a.second_frame, text="rpms", font=frameFont, bg=frameBG, fg=frameTC)
     a.speedUnit_label            = tk.Label(a.second_frame, text="mph", font=frameFont, bg=frameBG, fg=frameTC)
     a.distanceUnit_label              = tk.Label(a.second_frame, text="m", font=frameFont, bg=frameBG, fg=frameTC)
