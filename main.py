@@ -1,6 +1,6 @@
-from calculation import *
-from datas import *
-from sensors import *
+from data_handler.calculation import *
+from data_handler.datas import *
+from data_handler.sensors import *
 
 sensor = Sensor(21)
 data = Data("Wowotek", 22, 90, False)
