@@ -1,13 +1,7 @@
-from tkinter import *
-from tkinter import ttk
 import tkinter as tk
 import time
 import math
-import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(21, GPIO.IN)
 
 def calculate_elapse(channel):              # callback function
     global pulse, start_timer, elapse
@@ -25,10 +19,7 @@ def calculate_speed(circ_cm):
         dist_meas = dist_km*pulse           # measure distance traversed in kilometer
         return km_per_hour
 
-def init_interrupt():
-    GPIO.add_event_detect(sensor, GPIO.FALLING, callback = calculate_elapse, bouncetime = 20)
-
-def start_calculations(n, g, w):          #parameters are age,gender,weight
+def start_calculations(age, gender, weight):          #parameters are age,gender,weight
     init_interrupt()
     start = time.time()
     calories_burned = 0
@@ -173,8 +164,6 @@ def place_live_whidgets():
     a.heart_unit_label.grid(row=3, column=3)
 
 
-
-
 border=5
 frameBG='#000033'
 frameTC='#FFFFFF'
@@ -190,36 +179,36 @@ pulse = 0
 start_timer = time.time()
 
 
-a = Tk()                                 #create window
+a = tk.Tk()                                 #create window
 a.minsize(1600, 320)                      #size window 
 a.title("Current Statistics")            #title window
 a.configure(background=frameBG)        #background color   
 
-enter_name = Label(a, text="Name", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
+enter_name = tk.Label(a, text="Name", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
 enter_name.grid(row=1, column=1)
 
-name_entry = Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
+name_entry = tk.Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
 name_entry.grid(row=1, column=2)
 
-enter_gender = Label(a, text="Gender", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
+enter_gender =tk. Label(a, text="Gender", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
 enter_gender.grid(row=2, column=1)
 
-gender_entry = Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
+gender_entry = tk.Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
 gender_entry.grid(row=2, column=2)
 
-enter_age = Label(a, text="Age", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
+enter_age = tk.Label(a, text="Age", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
 enter_age.grid(row=3,column=1)
 
-age_entry = Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
+age_entry = tk.Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
 age_entry.grid(row=3, column=2)
 
-enter_weight = Label(a, text="Weight", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
+enter_weight = tk.Label(a, text="Weight", font='Helvetica 50', bg=frameBG, fg=frameTC)   #create text variable
 enter_weight.grid(row=4, column=1)
 
-weight_entry = Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
+weight_entry = tk.Entry(a, bd = 10, font='Helvetica 50')                   #create text entry box
 weight_entry.grid(row=4, column=2)
 
-enter_button = Button(a, text = "ENTER", command=click, height = 5, width = 30) #create button
+enter_button = tk.Button(a, text = "ENTER", command=click, height = 5, width = 30) #create button
 enter_button.grid(row=5, column=2)
 
 
