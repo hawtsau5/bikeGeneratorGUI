@@ -14,7 +14,9 @@ so basically it's a unended loop
 and looped every second
 it simulate sensor detected the rotation magnet sensors every second
 
+
 '''
+
 test_time = time.time()
 while True:
     calculator.calculate()
