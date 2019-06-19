@@ -26,7 +26,7 @@ class Data:
 
     
     def pretty_print(self):
-        print("exerTime : {:.2f} calBurnt : {:.2f} bpm : {:.2f} rpm : {:.2f} dist : {:.2f}".format(
+        print("exerTime : {:.2f} calBurnt : {:.2f} bpm : {:.2f} rpm : {:.2f} dist : {:.5f}".format(
             self.exercize_time, self.calories_burned,
-            self.heart_rate, self.rpm, self.distance
+            self.heart_rate, self.rpm, self.distance*1000
         ))
