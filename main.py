@@ -3,9 +3,6 @@ from tkinter import ttk
 import tkinter as tk
 import mainGPIO
 
-
-
-
 def click():
     name = nameEntry.get()
     age = ageEntry.get()
@@ -20,7 +17,7 @@ def liveWindow(x,y):
 
     createLiveWidgets(x,y)
     placeLiveWidgets()
-    startRPM()
+    mainGPIO.startRPM()
 
 def createLiveWidgets(x,y):
     a.first_frame = tk.LabelFrame(a, text='Power Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frameTC)

@@ -1,9 +1,12 @@
 import time
 import math
 import RPi.GPIO as GPIO
+import main
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(21, GPIO.IN)
+
 
 def calculate_elapse(channel):              # callback function
     global pulse, start_timer, elapse
@@ -11,11 +14,10 @@ def calculate_elapse(channel):              # callback function
     elapse = time.time() - start_timer      # elapse for every 1 complete rotation made!
     start_timer = time.time()               # let current time equals to start_timer
 
-def calculate_speed(r_cm):
+def calculate_speed(circ_cm):
     global pulse,elapse,rpm,dist_km,dist_meas,km_per_sec,km_per_hour
     if elapse !=0:                          # to avoid DivisionByZero error
-        rpm = 1/elapse * 60
-        circ_cm = (2*math.pi)*r_cm          # calculate wheel circumference in CM
+        rpm = 1/elapse * 60          
         dist_km = circ_cm/100000            # convert cm to km
         km_per_sec = dist_km / elapse       # calculate KM/sec
         km_per_hour = km_per_sec * 3600     # calculate KM/h
@@ -28,11 +30,13 @@ def init_interrupt():
 def startRPM():
     init_interrupt()
     while True:
+        main.a.update()
         calculate_speed(20) # call this function with wheel radius as parameter
         print('rpm:{0:.0f}-RPM kmh:{1:.0f}-KMH dist_meas:{2:.2f}m pulse:{3}'.format(rpm,km_per_hour,dist_meas,pulse))
         time.sleep(0.1)
         
 dist_meas = 0.00
+circ_cm = 188.62
 km_per_hour = 0
 rpm = 0
 elapse = 0
