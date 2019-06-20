@@ -20,5 +20,4 @@ while True:
     sensor.callback_function(21)
     data.pretty_print()
     
-
     time.sleep(1)

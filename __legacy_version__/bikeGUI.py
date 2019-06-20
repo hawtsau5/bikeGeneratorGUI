@@ -3,11 +3,11 @@ from tkinter import ttk
 import tkinter as tk
 import time
 import math
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(21, GPIO.IN)
+# GPIO.setmode(GPIO.BCM)
+# GPIO.setwarnings(False)
+# GPIO.setup(21, GPIO.IN)
 
 def calculate_elapse(channel):              # callback function
     global pulse, start_timer, elapse
