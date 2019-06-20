@@ -26,7 +26,7 @@ class GUI:
         if not self.ctx.should_close():
             self.ctx.new_frame()
 
-            self.windows.draw_time_elapsed_window()
+            self.windows.draw_window()
 
             self.ctx.render()
         else:

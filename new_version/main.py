@@ -27,5 +27,6 @@ gui = GUI(data)
 while True:
     calculator.calculate()
     sensor.callback_function()
+    
     gui.draw_window()
     time.sleep(0.048)

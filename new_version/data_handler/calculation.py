@@ -1,4 +1,4 @@
-import time
+import time, random
 
 class Calculator:
     def __init__(self, datas, gpio_controller, circle_circumference):
@@ -14,7 +14,7 @@ class Calculator:
             self.data.distance = (self.circle_circumference/100000) * self.gpio_controller.tick
 
     def calculate(self):
-        self.data.heart_rate = 60.0
+        self.data.heart_rate = float(random.randint(60, 160.0))
         self.calculate_speed()
         self.data.exercize_time = time.time() - self.data.exercize_start_time
         
