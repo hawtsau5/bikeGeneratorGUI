@@ -23,5 +23,5 @@ class Fonts:
                 "yu"             : af(font_dir + "Yu.ttf", i),
                 "inserat"        : af(font_dir + "Inserat.otf", i)
             } 
-            for i in range(66)
+            for i in range(12, 100)
         ]

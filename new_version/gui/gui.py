@@ -1,31 +1,33 @@
 import time, random
 import bimpy
 
-from font import Fonts
-from window import Windows
-
-ctx = bimpy.Context()
-ctx.init(1366, 768, "Test")
-
-style = bimpy.GuiStyle()
-
-style.set_color(bimpy.Colors(2), bimpy.Vec4(0.0, 0.0, 0.26, 1))  # Change Window BG Color
-
-bimpy.set_style(style)
-fonts = Fonts()
-fonts.load_all_fonts()
-
-windows = Windows(ctx, fonts)
+from gui.font import Fonts
+from gui.window import Windows
 
 
-while not ctx.should_close():
-    ctx.new_frame()
+class GUI:
+    def __init__(self, data):
+        self.data = data
 
-    windows.draw_time_elapsed_window()
-    windows.draw_power_levels_window()
-    windows.draw_speed_levels_window()
-    windows.draw_user_info_window()
+        self.ctx = bimpy.Context()
+        self.ctx.init(1366, 768, "Test")
 
-    ctx.render()
+        style = bimpy.GuiStyle()
+        style.set_color(bimpy.Colors(2), bimpy.Vec4(0.0, 0.0, 0.26, 1))  # Change Window BG Color
 
-    time.sleep(.10)
+        bimpy.set_style(style)
+
+        self.fonts = Fonts()
+        self.fonts.load_all_fonts()
+
+        self.windows = Windows(self.ctx, self.fonts, self.data)
+
+    def draw_window(self):
+        if not self.ctx.should_close():
+            self.ctx.new_frame()
+
+            self.windows.draw_time_elapsed_window()
+
+            self.ctx.render()
+        else:
+            exit()

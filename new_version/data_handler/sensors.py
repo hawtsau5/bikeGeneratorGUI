@@ -14,7 +14,7 @@ class Sensor:
         # GPIO.setwarnings(False)
         # GPIO.add_event_detect(input_pin, GPIO.FALLING, callback=self.callback_function, bouncetime=20)
 
-    def callback_function(self, channel):
+    def callback_function(self, channel=0):
         self.tick += 1
         self.update_elapsed = time.time() - self.update_start
         self.update_start = time.time()
