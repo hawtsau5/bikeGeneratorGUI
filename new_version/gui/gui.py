@@ -1,16 +1,17 @@
 import time, random
 import bimpy
 
+from data_handler.datas import Data
 from gui.font import Fonts
-from gui.window import Windows
-
+from gui.main_window import MainWindows
+from gui.user_input_window import UserInputWindow
 
 class GUI:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self):
+        self.data = None
 
         self.ctx = bimpy.Context()
-        self.ctx.init(1366, 768, "Test")
+        self.ctx.init(1015, 636, "Test")
 
         style = bimpy.GuiStyle()
         style.set_color(bimpy.Colors(2), bimpy.Vec4(0.0, 0.0, 0.26, 1))  # Change Window BG Color
@@ -20,14 +21,21 @@ class GUI:
         self.fonts = Fonts()
         self.fonts.load_all_fonts()
 
-        self.windows = Windows(self.ctx, self.fonts, self.data)
+        self.mainWindows = MainWindows(self.fonts, self.data)
+        self.userInputWindow = UserInputWindow(self.fonts)
 
     def draw_window(self):
         if not self.ctx.should_close():
             self.ctx.new_frame()
 
-            self.windows.draw_window()
+            if self.data == None:
+                self.userInputWindow.draw_window()
+            else:
+                self.mainWindows.draw_window()
 
             self.ctx.render()
         else:
             exit()
+
+    def get_data(self):
+        return self.data

@@ -24,3 +24,5 @@ class Calculator:
         duration_ratio  = self.data.exercize_time / (60 * 4.184)
 
         self.data.calories_burned = (age_ratio + weight_ratio + bpm_ratio - 55.0969) * duration_ratio
+
+        print("rpm : {} | exercise time : {}".format(self.data.rpm, self.data.exercize_time))
