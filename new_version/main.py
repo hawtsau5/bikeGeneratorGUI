@@ -21,7 +21,7 @@ from gui.gui import *
 
 sensor = Sensor(21)
 data = Data("Wowotek", 22, 90, False)
-calculator = Calculator(data, sensor, 20)
+calculator = Calculator(data, sensor, 240)
 gui = GUI(data)
 
 while True:
@@ -29,4 +29,4 @@ while True:
     sensor.callback_function()
     
     gui.draw_window()
-    time.sleep(0.048)
+    time.sleep(0.012)
