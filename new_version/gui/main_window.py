@@ -114,7 +114,10 @@ class MainWindows:
         bimpy.push_font(self.fonts.fonts[44]["ext_bold_ital"])
         bimpy.text("")
         bimpy.same_line(25, 0)
-        bimpy.text("{:.2f}".format(self.data.voltage).rjust(6, "0"))
+        if self.data.voltage >= 0:
+            bimpy.text("{:.2f}".format(self.data.voltage).rjust(6, "0"))
+        else:
+            bimpy.text("-" + "{:.2f}".format(self.data.voltage).rjust(5, "0"))
         bimpy.pop_font()
 
         bimpy.push_font(self.fonts.fonts[44]["ext_bold_ital"])
@@ -280,7 +283,10 @@ class MainWindows:
         bimpy.push_font(self.fonts.fonts[44]["ext_bold_ital"])
         bimpy.text("")
         bimpy.same_line(25, 0)
-        bimpy.text("{:.2f}".format(self.data.calories_burned).rjust(7, "0"))
+        if self.data.calories_burned >= 0:
+            bimpy.text("{:.2f}".format(self.data.calories_burned).rjust(7, "0"))
+        else:
+            bimpy.text("0.00".rjust(7, "0"))
         bimpy.pop_font()
 
         bimpy.push_font(self.fonts.fonts[44]["ext_bold_ital"])
