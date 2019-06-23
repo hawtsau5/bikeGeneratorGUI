@@ -251,8 +251,8 @@ class MainWindows:
         bimpy.pop_font()
 
         bimpy.push_font(self.fonts.fonts[44]["ext_bold_ital"])
-        bimpy.same_line(215, 0)
-        bimpy.text("Amp")
+        bimpy.same_line(212, 0)
+        bimpy.text("Watts")
         bimpy.pop_font()
         
         self.power_datas.append(self.data.power)
@@ -399,7 +399,7 @@ class MainWindows:
 
         bimpy.push_font(self.fonts.fonts[44]["ext_bold_ital"])
         bimpy.same_line(200, 0)
-        bimpy.text("KmH")
+        bimpy.text("Km/H")
         bimpy.pop_font()
 
         bimpy.end()
