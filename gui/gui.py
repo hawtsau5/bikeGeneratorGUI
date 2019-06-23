@@ -10,7 +10,7 @@ class GUI:
         self.data = data
 
         self.ctx = bimpy.Context()
-        self.ctx.init(1015, 636, "Test")
+        self.ctx.init(1015, 768, "Test")
 
         style = bimpy.GuiStyle()
         style.set_color(bimpy.Colors(2), bimpy.Vec4(0.0, 0.0, 0.26, 1))  # Change Window BG Color

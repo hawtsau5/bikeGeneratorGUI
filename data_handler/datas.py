@@ -23,6 +23,8 @@ class Data:
         self.age = age
         self.gender = gender    # false for male, true for female
         self.weight = weight
+        
+        self.is_exercising = True
 
     def validate(self):
         nv = True if self.name != "" else False
