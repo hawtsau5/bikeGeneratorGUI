@@ -21,6 +21,7 @@ class GUI:
         self.fonts.load_all_fonts()
 
         self.mainWindows = MainWindows(self.fonts, self.data)
+        self.data.exercize_start_time = time.time()
 
     def draw_window(self):
         if not self.ctx.should_close():

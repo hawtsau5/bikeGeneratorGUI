@@ -12,5 +12,5 @@ class Fonts:
                 "cond"           : af(font_dir + "Condensed.ttf", i),
                 "ext_bold_ital"  : af(font_dir + "ExtraBoldItalic.ttf", i)
             } 
-            for i in range(12, 100)
+            for i in range(12, 60)
         ]

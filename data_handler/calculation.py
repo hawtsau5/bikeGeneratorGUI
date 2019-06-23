@@ -6,6 +6,8 @@ class Calculator:
         self.circle_circumference = circle_circumference
         self.gpio_controller = gpio_controller
 
+        self.is_calculating = True
+
     def calculate_speed(self):
         if self.gpio_controller.update_elapsed != 0:
             self.data.rpm = 1/self.gpio_controller.update_elapsed * 60
@@ -14,6 +16,8 @@ class Calculator:
             self.data.distance = (self.circle_circumference/100000) * self.gpio_controller.tick
 
     def calculate(self):
+        if not self.is_calculating: return
+            
         self.data.heart_rate = 80
         self.calculate_speed()
         self.data.exercize_time = time.time() - self.data.exercize_start_time
