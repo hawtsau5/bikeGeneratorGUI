@@ -145,7 +145,7 @@ def create_live_whidgets(x,y):
     
 
 def place_live_whidgets():
-    a.first_frame.grid(row=1, column=1)
+    a.first_frame.pack(side=TOP, fill=Y, expand=NO)
     a.power_label.grid(row=1, column=1)
     a.voltage_label.grid(row=2, column=1)
     a.current_label.grid(row=3, column=1)
@@ -159,7 +159,7 @@ def place_live_whidgets():
     a.current_unit_label.grid(row=3, column=3)
     a.battery_unit_label.grid(row=4, column=3)
 
-    a.second_frame.grid(row=1, column=2)
+    a.second_frame.pack(fill=Y, expand=NO)
     a.rpm_label.grid(row=1, column=1)
     a.speed_label.grid(row=2, column=1)
     a.distance_label.grid(row=3, column=1)
@@ -173,7 +173,7 @@ def place_live_whidgets():
     a.distance_unit_label.grid(row=3, column=3)
     a.elapsed_unit_time.grid(row=4, column=3)
 
-    a.third_frame.grid(row=1, column=3)
+    a.third_frame.pack(fill=Y, expand=NO)
     a.name_label.grid(row=1, column=1)
     a.age_label.grid(row=2, column=1)
     a.heart_label.grid(row=3, column=1)
@@ -200,9 +200,9 @@ pulse = 0
 start_timer = time.time()
 
 
-a = Tk()                                 #create window
-a.pack_propagate(0)
-a.minsize(420, 200)                      #size window 
+a = Tk()
+w, h = a.winfo_screenwidth(), a.winfo_screenheight()
+a.geometry("%dx%d+0+0" % (w, h))                     #size window 
 a.title("Current Statistics")            #title window
 a.configure(background=frameBG)        #background color
 
