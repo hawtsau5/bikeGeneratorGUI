@@ -56,7 +56,8 @@ def start_calculations(n, g, w):          #parameters are age,gender,weight
             
         update_calorie_heart(round(calories_burned,2), round(heart_rate,2))
         time.sleep(.1)
-        
+
+
 
 def click():
     name = name_entry.get()
@@ -77,6 +78,7 @@ def click():
     start_calculations(age, gender, weight)
 
 def live_window(x,y):          #parameters are name, age
+    phantom_column.destroy()
     enter_name.destroy()
     enter_gender.destroy()
     enter_age.destroy()
@@ -103,7 +105,7 @@ def update_calorie_heart(c, h):               #parameter is calories and heart r
 
 def create_live_whidgets(x,y):
     y = int(y)
-    a.first_frame         = tk.LabelFrame(a, text='Power Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frameTC)
+    a.first_frame         = tk.LabelFrame(a, text='Power Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frame_titleTC)
     a.power_label         = tk.Label(a.first_frame, text="power :", font=frameFont, bg=frameBG, fg=frameTC) #create power labels
     a.voltage_label       = tk.Label(a.first_frame, text="voltage :", font=frameFont, bg=frameBG, fg=frameTC)
     a.current_label       = tk.Label(a.first_frame, text="current :", font=frameFont, bg=frameBG, fg=frameTC)
@@ -117,7 +119,7 @@ def create_live_whidgets(x,y):
     a.current_unit_label  = tk.Label(a.first_frame, text="A", font=frameFont, bg=frameBG, fg=frameTC)
     a.battery_unit_label  = tk.Label(a.first_frame, text="%", font=frameFont, bg=frameBG, fg=frameTC)
 
-    a.second_frame        = tk.LabelFrame(a, text='Speed Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frameTC)
+    a.second_frame        = tk.LabelFrame(a, text='Speed Levels', font='Helvetica 22', bd=border, bg=frameBG, fg=frame_titleTC)
     a.rpm_label           = tk.Label(a.second_frame, text="RPM :", font=frameFont, bg=frameBG, fg=frameTC)
     a.speed_label         = tk.Label(a.second_frame, text="speed :", font=frameFont, bg=frameBG, fg=frameTC)
     a.distance_label      = tk.Label(a.second_frame, text="distance :", font=frameFont, bg=frameBG, fg=frameTC)
@@ -132,7 +134,7 @@ def create_live_whidgets(x,y):
     a.elapsed_unit_time   = tk.Label(a.second_frame, text="s", font=frameFont, bg=frameBG, fg=frameTC)
 
 
-    a.third_frame         = tk.LabelFrame(a, text='User Info', font='Helvetica 22', bd=border, bg=frameBG, fg=frameTC)
+    a.third_frame         = tk.LabelFrame(a, text='User Info', font='Helvetica 22', bd=border, bg=frameBG, fg=frame_titleTC)
     a.name_label          = tk.Label(a.third_frame, text="name :", font=frameFont, bg=frameBG, fg=frameTC)
     a.age_label           = tk.Label(a.third_frame, text="age :", font=frameFont, bg=frameBG, fg=frameTC)
     a.heart_label         = tk.Label(a.third_frame, text="heart rate :", font=frameFont, bg=frameBG, fg=frameTC)
@@ -190,6 +192,7 @@ def place_live_whidgets():
 border=5
 frameBG='#000033'
 frameTC='#FFFFFF'
+frame_titleTC='#949BA3'
 frameFont='Helvetica 20'
 
 dist_meas = 0.00
@@ -202,48 +205,40 @@ start_timer = time.time()
 
 a = Tk()
 w, h = a.winfo_screenwidth(), a.winfo_screenheight()
-a.geometry("%dx%d+0+0" % (w, h))                     #size window 
+a.geometry("%dx%d+0+0" % (w, h))           #size window 
 a.title("Current Statistics")            #title window
 a.configure(background=frameBG)        #background color
 
+phantom_column = Label(a, text="", width=48, font='Helvetica 20', bg=frameBG, fg=frameTC)
 gender_box = StringVar(a)
 gender_choices = ['Female', 'Male']
-
 age_box = StringVar(a)
 age_choices = [i for i in range(13,100)]
-
 weight_box = StringVar(a)
 weight_choices = [i for i in range(20,140)]
 
-enter_name = Label(a, text="Name", font='Helvetica 20', bg=frameBG, fg=frameTC)   #create text variable
-enter_name.grid(row=1, column=1)
-
-name_entry = Entry(a, bd = 1, font='Helvetica 20')                   #create text entry box
-name_entry.grid(row=1, column=2)
-
-enter_gender = Label(a, text="M/F", font='Helvetica 20', bg=frameBG, fg=frameTC)   #create text variable
-enter_gender.grid(row=2, column=1)
-
-gender_entry = OptionMenu(a, gender_box, *gender_choices)                   #create text entry box
-gender_entry.grid(row=2, column=2)
+enter_name = Label(a, text="Name", font='Helvetica 20', bg=frameBG, fg=frameTC) 
+name_entry = Entry(a, bd = 1, font='Helvetica 20')
+enter_gender = Label(a, text="M/F", font='Helvetica 20', bg=frameBG, fg=frameTC)
+gender_entry = Radiobutton(a, variable=gender_box, value=gender_choices, font='Helvetica 20',)
 gender_box.set('Female')
-
-enter_age = Label(a, text="Age", font='Helvetica 20', bg=frameBG, fg=frameTC)   #create text variable
-enter_age.grid(row=3,column=1)
-
-age_entry = OptionMenu(a, age_box, *age_choices)                   #create text entry box
-age_entry.grid(row=3, column=2)
+enter_age = Label(a, text="Age", font='Helvetica 20', bg=frameBG, fg=frameTC) 
+age_entry = ttk.Combobox(a, textvariable=age_box, values=age_choices, font='Helvetica 20', width = 3)
 age_box.set('13')
+enter_weight = Label(a, text="Weight(kg)", font='Helvetica 20', bg=frameBG, fg=frameTC)
+weight_entry = ttk.Combobox(a, textvariable=weight_box, values=weight_choices, font='Helvetica 20')  
+weight_box.set('20')
+enter_button = Button(a, text = "ENTER", command=click, height = 3, width = 15)
 
-enter_weight = Label(a, text="Weight(kg)", font='Helvetica 20', bg=frameBG, fg=frameTC)   #create text variable
+phantom_column.grid(row=1, column=0)
+enter_name.grid(row=1, column=1)
+name_entry.grid(row=1, column=2)
+enter_gender.grid(row=2, column=1)
+gender_entry.grid(row=2, column=2)
+enter_age.grid(row=3,column=1)
+age_entry.grid(row=3, column=2)
 enter_weight.grid(row=4, column=1)
-
-weight_entry = OptionMenu(a, weight_box, *weight_choices)                   #create text entry box
 weight_entry.grid(row=4, column=2)
-weight_box.set(20)
-
-enter_button = Button(a, text = "ENTER", command=click, height = 3, width = 15) #create button
 enter_button.grid(row=5, column=2)
-
 
 a.mainloop()
